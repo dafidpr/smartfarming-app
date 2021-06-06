@@ -287,7 +287,7 @@ class TemperatureView extends StatelessWidget {
                                             CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                            '${(temperature.toString())} %',
+                                            '${(temperature.toString())} \u2103',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
@@ -410,7 +410,7 @@ class TemperatureView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    '${(temperature.toString())} %',
+                                    '${(temperature.toString())} \u2103',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: FitnessAppTheme.fontName,

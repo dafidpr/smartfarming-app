@@ -77,11 +77,19 @@ class _TemperatureScreenState extends State<TemperatureScreen>
         await Network().getData('/sensor/$serialNumber/getTemperatureHumidity');
     var body = json.decode(res.body)['data'];
     setState(() {
-      temperature = body['temperature'];
-      voltage = body['voltage'];
-      humidity = body['humidity'];
-      ampere = body['current'];
-      watt = body['power'];
+      if (body != null) {
+        temperature = body['temperature'];
+        voltage = body['voltage'];
+        humidity = body['humidity'];
+        ampere = body['current'];
+        watt = body['power'];
+      } else {
+        temperature = "0.00";
+        voltage = "0.00";
+        humidity = "0.00";
+        ampere = "0,00";
+        watt = "0.00";
+      }
     });
 
     listViews.add(

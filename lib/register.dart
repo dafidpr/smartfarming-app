@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:best_flutter_ui_templates/pages/home_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'api/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,6 +32,20 @@ class _RegisterState extends State<Register> {
     });
   }
 
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  _showMsg(msg) {
+    final snackBar = SnackBar(
+      content: Text(msg),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {
+          // Some code to undo the change!
+        },
+      ),
+    );
+    _scaffoldKey.currentState.showSnackBar(snackBar);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -39,24 +54,20 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        color: Colors.teal,
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Card(
-                      elevation: 4.0,
-                      color: Colors.white,
-                      margin: EdgeInsets.only(left: 20, right: 20),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
+    return Scaffold(
+      key: _scaffoldKey,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.only(top: 90),
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Form(
                           key: _formKey,
@@ -92,7 +103,7 @@ class _RegisterState extends State<Register> {
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
-                                    Icons.supervisor_account,
+                                    Icons.person,
                                     color: Colors.grey,
                                   ),
                                   hintText: "Username",
@@ -116,7 +127,7 @@ class _RegisterState extends State<Register> {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
-                                    Icons.vpn_key,
+                                    Icons.lock,
                                     color: Colors.grey,
                                   ),
                                   hintText: "Password",
@@ -208,7 +219,7 @@ class _RegisterState extends State<Register> {
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
-                                    Icons.format_list_numbered,
+                                    Icons.vpn_key,
                                     color: Colors.grey,
                                   ),
                                   hintText: "Serial Number",
@@ -227,10 +238,10 @@ class _RegisterState extends State<Register> {
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: FitnessAppTheme.background,
                                 ),
                                 padding: EdgeInsets.only(left: 0.0),
-                                margin: EdgeInsets.only(top: 4.0, right: 0.0),
+                                margin: EdgeInsets.only(top: 7.0, right: 4.0),
                                 child: DropdownButton(
                                   hint: Text("Pilih Kelompok Petani"),
                                   isExpanded: true,
@@ -248,69 +259,112 @@ class _RegisterState extends State<Register> {
                                   },
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FlatButton(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 8, bottom: 8, left: 10, right: 10),
-                                    child: Text(
-                                      _isLoading
-                                          ? 'Proccessing...'
-                                          : 'Register',
-                                      textDirection: TextDirection.ltr,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15.0,
-                                        decoration: TextDecoration.none,
-                                        fontWeight: FontWeight.normal,
+                              SizedBox(
+                                height: 30,
+                              ),
+                              SizedBox(
+                                  height: 50,
+                                  width: double.infinity,
+                                  child: FlatButton(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 8,
+                                          bottom: 8,
+                                          left: 10,
+                                          right: 10),
+                                      child: Text(
+                                        _isLoading
+                                            ? 'Proccessing...'
+                                            : 'Register',
+                                        textDirection: TextDirection.ltr,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15.0,
+                                          decoration: TextDecoration.none,
+                                          fontWeight: FontWeight.normal,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  color: Colors.teal,
-                                  disabledColor: Colors.grey,
-                                  shape: new RoundedRectangleBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(20.0)),
-                                  onPressed: () {
-                                    if (_formKey.currentState.validate()) {
-                                      _register();
-                                    }
-                                  },
-                                ),
-                              ),
+                                    color: FitnessAppTheme.nearlyDarkBlue,
+                                    disabledColor: Colors.grey,
+                                    shape: new RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(5.0)),
+                                    onPressed: () {
+                                      if (_formKey.currentState.validate()) {
+                                        _register();
+                                      }
+                                    },
+                                  ))
                             ],
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) => Login()));
-                        },
-                        child: Text(
-                          'Already Have an Account',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15.0,
-                            decoration: TextDecoration.none,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (context) => Login()));
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(margin: EdgeInsets.only(bottom: 100)),
+                                Text(
+                                  "Already have an Account ? ",
+                                  style: TextStyle(
+                                      color: FitnessAppTheme.darkText),
+                                ),
+                                GestureDetector(
+                                  // onTap: press,
+                                  child: Text(
+                                    "Sign In",
+                                    style: TextStyle(
+                                      color: FitnessAppTheme.nearlyDarkBlue,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
+          color: FitnessAppTheme.background,
         ),
       ),
+    );
+  }
+
+  void showMessageDialog(title, message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(title),
+          content: new Text(message),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Ok"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => Login()),
+                );
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -331,12 +385,25 @@ class _RegisterState extends State<Register> {
 
     var res = await Network().authData(data, '/register');
     var body = json.decode(res.body);
-    print(body);
     if (body['success']) {
-      Navigator.push(
-        context,
-        new MaterialPageRoute(builder: (context) => Login()),
-      );
+      showMessageDialog("Registrasi Berhasil!",
+          "Anda sudah berhasil registrasi, silahkan login!");
+    } else {
+      if (body['messages']['username'] != null) {
+        _showMsg(body['messages']['username'][0]);
+      } else {
+        if (body['messages']['email'] != null) {
+          _showMsg(body['messages']['email'][0]);
+        } else {
+          if (body['messages']['land_area'] != null) {
+            _showMsg(body['messages']['land_area'][0]);
+          } else {
+            if (body['messages']['serial_number'] != null) {
+              _showMsg(body['messages']['serial_number'][0]);
+            }
+          }
+        }
+      }
     }
     setState(() {
       _isLoading = false;

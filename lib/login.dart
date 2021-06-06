@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:best_flutter_ui_templates/pages/home_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'api/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'register.dart';
 import 'index_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -35,7 +37,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       key: _scaffoldKey,
       body: Container(
-        color: Colors.teal,
+        color: FitnessAppTheme.background,
         child: Stack(
           children: <Widget>[
             Positioned(
@@ -44,68 +46,66 @@ class _LoginState extends State<Login> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Card(
-                      elevation: 4.0,
-                      color: Colors.white,
-                      margin: EdgeInsets.only(left: 20, right: 20),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              TextFormField(
-                                style: TextStyle(color: Color(0xFF000000)),
-                                cursorColor: Color(0xFF9b9b9b),
-                                keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.verified_user_sharp,
-                                    color: Colors.grey,
-                                  ),
-                                  hintText: "Username",
-                                  hintStyle: TextStyle(
-                                      color: Color(0xFF9b9b9b),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.normal),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            TextFormField(
+                              style: TextStyle(color: Color(0xFF000000)),
+                              cursorColor: Color(0xFF9b9b9b),
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.person,
+                                  color: Colors.grey,
                                 ),
-                                validator: (usernameValue) {
-                                  if (usernameValue.isEmpty) {
-                                    return 'Please enter username';
-                                  }
-                                  username = usernameValue;
-                                  return null;
-                                },
+                                hintText: "Username",
+                                hintStyle: TextStyle(
+                                    color: Color(0xFF9b9b9b),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal),
                               ),
-                              TextFormField(
-                                style: TextStyle(color: Color(0xFF000000)),
-                                cursorColor: Color(0xFF9b9b9b),
-                                keyboardType: TextInputType.text,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.vpn_key,
-                                    color: Colors.grey,
-                                  ),
-                                  hintText: "Password",
-                                  hintStyle: TextStyle(
-                                      color: Color(0xFF9b9b9b),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.normal),
+                              validator: (usernameValue) {
+                                if (usernameValue.isEmpty) {
+                                  return 'Please enter username';
+                                }
+                                username = usernameValue;
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              style: TextStyle(color: Color(0xFF000000)),
+                              cursorColor: Color(0xFF9b9b9b),
+                              keyboardType: TextInputType.text,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  color: Colors.grey,
                                 ),
-                                validator: (passwordValue) {
-                                  if (passwordValue.isEmpty) {
-                                    return 'Please enter some text';
-                                  }
-                                  password = passwordValue;
-                                  return null;
-                                },
+                                hintText: "Password",
+                                hintStyle: TextStyle(
+                                    color: Color(0xFF9b9b9b),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
+                              validator: (passwordValue) {
+                                if (passwordValue.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                password = passwordValue;
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            SizedBox(
+                                height: 50,
+                                width: double.infinity,
                                 child: FlatButton(
                                   child: Padding(
                                     padding: EdgeInsets.only(
@@ -121,42 +121,51 @@ class _LoginState extends State<Login> {
                                       ),
                                     ),
                                   ),
-                                  color: Colors.teal,
+                                  color: FitnessAppTheme.nearlyDarkBlue,
                                   disabledColor: Colors.grey,
                                   shape: new RoundedRectangleBorder(
                                       borderRadius:
-                                          new BorderRadius.circular(20.0)),
+                                          new BorderRadius.circular(5.0)),
                                   onPressed: () {
                                     if (_formKey.currentState.validate()) {
                                       _login();
                                     }
                                   },
-                                ),
-                              ),
-                            ],
-                          ),
+                                ))
+                          ],
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) => Register()));
-                        },
-                        child: Text(
-                          'Create new Account',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15.0,
-                            decoration: TextDecoration.none,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) => Register()));
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(margin: EdgeInsets.only(bottom: 100)),
+                              Text(
+                                "Don’t have an Account ? ",
+                                style:
+                                    TextStyle(color: FitnessAppTheme.darkText),
+                              ),
+                              GestureDetector(
+                                // onTap: press,
+                                child: Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                    color: FitnessAppTheme.nearlyDarkBlue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              )
+                            ],
+                          )),
                     ),
                   ],
                 ),
