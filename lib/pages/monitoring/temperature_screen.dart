@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:best_flutter_ui_templates/pages/ui_view/dashboard_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/temperature_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/dashboard_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/title_view.dart';
-import 'package:best_flutter_ui_templates/pages/home_app_theme.dart';
-import 'package:best_flutter_ui_templates/pages/home/water_view.dart';
-import 'package:best_flutter_ui_templates/api/api.dart';
+import 'package:smartfarming_app/pages/ui_view/dashboard_view.dart';
+import 'package:smartfarming_app/pages/ui_view/temperature_view.dart';
+import 'package:smartfarming_app/pages/ui_view/dashboard_view.dart';
+import 'package:smartfarming_app/pages/ui_view/title_view.dart';
+import 'package:smartfarming_app/pages/home_app_theme.dart';
+import 'package:smartfarming_app/pages/home/water_view.dart';
+import 'package:smartfarming_app/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

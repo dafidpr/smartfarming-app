@@ -1,9 +1,9 @@
-import 'package:best_flutter_ui_templates/pages/ui_view/dashboard_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/watt_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/title_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/dashboard_view.dart';
-import 'package:best_flutter_ui_templates/pages/home_app_theme.dart';
-import 'package:best_flutter_ui_templates/pages/home/water_view.dart';
+import 'package:smartfarming_app/pages/ui_view/dashboard_view.dart';
+import 'package:smartfarming_app/pages/ui_view/watt_view.dart';
+import 'package:smartfarming_app/pages/ui_view/title_view.dart';
+import 'package:smartfarming_app/pages/ui_view/dashboard_view.dart';
+import 'package:smartfarming_app/pages/home_app_theme.dart';
+import 'package:smartfarming_app/pages/home/water_view.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:best_flutter_ui_templates/api/api.dart';
-import 'package:best_flutter_ui_templates/pages/home_app_theme.dart';
+import 'package:smartfarming_app/api/api.dart';
+import 'package:smartfarming_app/pages/home_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';

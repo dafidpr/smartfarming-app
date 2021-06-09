@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:best_flutter_ui_templates/api/api.dart';
-import 'package:best_flutter_ui_templates/main.dart';
-import 'package:best_flutter_ui_templates/login.dart';
+import 'package:smartfarming_app/api/api.dart';
+import 'package:smartfarming_app/main.dart';
+import 'package:smartfarming_app/login.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../home_app_theme.dart';

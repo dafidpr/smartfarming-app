@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:best_flutter_ui_templates/app_theme.dart';
+import 'package:smartfarming_app/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'pages/home_screen.dart';

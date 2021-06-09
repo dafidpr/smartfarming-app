@@ -1,8 +1,8 @@
-import 'package:best_flutter_ui_templates/pages/ui_view/area_list_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/running_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/title_view.dart';
-import 'package:best_flutter_ui_templates/pages/ui_view/profile_view.dart';
-import 'package:best_flutter_ui_templates/api/api.dart';
+import 'package:smartfarming_app/pages/ui_view/area_list_view.dart';
+import 'package:smartfarming_app/pages/ui_view/running_view.dart';
+import 'package:smartfarming_app/pages/ui_view/title_view.dart';
+import 'package:smartfarming_app/pages/ui_view/profile_view.dart';
+import 'package:smartfarming_app/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

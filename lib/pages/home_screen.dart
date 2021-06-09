@@ -1,8 +1,8 @@
-import 'package:best_flutter_ui_templates/pages/models/tabIcon_data.dart';
-import 'package:best_flutter_ui_templates/pages/monitoring/temperature_screen.dart';
-import 'package:best_flutter_ui_templates/pages/monitoring/watt_screen.dart';
-import 'package:best_flutter_ui_templates/pages/lamp/change_lamp_screen.dart';
-import 'package:best_flutter_ui_templates/pages/profile/profile_screen.dart';
+import 'package:smartfarming_app/pages/models/tabIcon_data.dart';
+import 'package:smartfarming_app/pages/monitoring/temperature_screen.dart';
+import 'package:smartfarming_app/pages/monitoring/watt_screen.dart';
+import 'package:smartfarming_app/pages/lamp/change_lamp_screen.dart';
+import 'package:smartfarming_app/pages/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'bottom_navigation_view/bottom_bar_view.dart';
 import 'home_app_theme.dart';

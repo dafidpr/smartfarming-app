@@ -1,4 +1,4 @@
-import 'package:best_flutter_ui_templates/pages/home_app_theme.dart';
+import 'package:smartfarming_app/pages/home_app_theme.dart';
 import 'package:flutter/material.dart';
 
 class TitleView extends StatelessWidget {
