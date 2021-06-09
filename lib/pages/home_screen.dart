@@ -131,6 +131,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ProfileScreen(animationController: animationController);
                 });
               });
+            } else if (index == 4) {
+              animationController.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = ChangeLampScreen(
+                      animationController: animationController);
+                });
+              });
             }
           },
         ),

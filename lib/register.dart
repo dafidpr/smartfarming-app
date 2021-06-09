@@ -55,6 +55,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: FitnessAppTheme.background,
       key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(
@@ -273,9 +274,7 @@ class _RegisterState extends State<Register> {
                                           left: 10,
                                           right: 10),
                                       child: Text(
-                                        _isLoading
-                                            ? 'Proccessing...'
-                                            : 'Register',
+                                        _isLoading ? 'Loading...' : 'Register',
                                         textDirection: TextDirection.ltr,
                                         style: TextStyle(
                                           color: Colors.white,

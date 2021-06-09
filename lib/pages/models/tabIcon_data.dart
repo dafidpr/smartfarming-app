@@ -45,5 +45,12 @@ class TabIconData {
       isSelected: false,
       animationController: null,
     ),
+    TabIconData(
+      imagePath: 'assets/smartfarming/lamp.png',
+      selectedImagePath: 'assets/smartfarming/lamp.png',
+      index: 4,
+      isSelected: false,
+      animationController: null,
+    ),
   ];
 }

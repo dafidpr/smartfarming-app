@@ -52,6 +52,7 @@ class _BottomBarViewState extends State<BottomBarView>
                                 parent: animationController,
                                 curve: Curves.fastOutSlowIn))
                             .value *
+                        // 0.0
                         38.0),
                 child: Column(
                   children: <Widget>[
@@ -162,18 +163,29 @@ class _BottomBarViewState extends State<BottomBarView>
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          splashColor: Colors.white.withOpacity(0.1),
-                          highlightColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          onTap: () {
-                            widget.addClick();
-                          },
-                          child: Icon(
-                            Icons.power_settings_new_rounded,
-                            color: FitnessAppTheme.white,
-                            size: 32,
-                          ),
-                        ),
+                            splashColor: Colors.white.withOpacity(0.1),
+                            highlightColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            onTap: () {
+                              widget.addClick();
+                            },
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                  height: 40,
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Expanded(
+                                    child: TabIcons(
+                                        tabIconData: widget.tabIconsList[4],
+                                        removeAllSelect: () {
+                                          setRemoveAllSelection(
+                                              widget.tabIconsList[4]);
+                                          widget.changeIndex(4);
+                                        }),
+                                  ),
+                                ),
+                              ],
+                            )),
                       ),
                     ),
                   ),

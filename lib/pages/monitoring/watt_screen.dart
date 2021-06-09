@@ -5,6 +5,7 @@ import 'package:best_flutter_ui_templates/pages/ui_view/dashboard_view.dart';
 import 'package:best_flutter_ui_templates/pages/home_app_theme.dart';
 import 'package:best_flutter_ui_templates/pages/home/water_view.dart';
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class WattScreen extends StatefulWidget {
   const WattScreen({Key key, this.animationController}) : super(key: key);
@@ -75,12 +76,39 @@ class _WattScreenState extends State<WattScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var data = [
+      Sales("Day 1", 78),
+      Sales("Day 2", 80),
+      Sales("Day 3", 34),
+      Sales("Day 4", 56),
+      Sales("Day 5", 54),
+      Sales("Day 6", 44),
+      Sales("Day 7", 66)
+    ];
+
+    var series = [
+      charts.Series(
+          domainFn: (Sales sales, _) => sales.day,
+          measureFn: (Sales sales, _) => sales.sold,
+          id: 'Sales',
+          colorFn: (_, __) => charts.ColorUtil.fromDartColor(Color(0xFF2633C5)),
+          data: data,
+          labelAccessorFn: (Sales sales, _) => '${sales.sold} W'),
+    ];
+
+    var chart = charts.BarChart(
+      series,
+      barRendererDecorator: charts.BarLabelDecorator<String>(),
+    );
     return Container(
       color: FitnessAppTheme.background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[
+            ChartView(
+              series: chart,
+            ),
             getMainListViewUI(),
             getAppBarUI(),
             SizedBox(
@@ -187,4 +215,11 @@ class _WattScreenState extends State<WattScreen> with TickerProviderStateMixin {
       ],
     );
   }
+}
+
+class Sales {
+  final String day;
+  final int sold;
+
+  Sales(this.day, this.sold);
 }

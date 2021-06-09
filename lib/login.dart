@@ -111,7 +111,7 @@ class _LoginState extends State<Login> {
                                     padding: EdgeInsets.only(
                                         top: 8, bottom: 8, left: 10, right: 10),
                                     child: Text(
-                                      _isLoading ? 'Proccessing...' : 'Login',
+                                      _isLoading ? 'Loading...' : 'Login',
                                       textDirection: TextDirection.ltr,
                                       style: TextStyle(
                                         color: Colors.white,
