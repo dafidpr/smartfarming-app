@@ -52,17 +52,18 @@ class ChartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var currDt = DateTime.now();
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 140, left: 20, right: 20),
+        margin: EdgeInsets.only(top: 140, left: 10),
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 30,
             ),
-            Text("Garfik Penggunaan Watt 7 Hari Terakhir"),
+            Text("Garfik Penggunaan Watt Tahun ${currDt.year}"),
             SizedBox(
-              height: 20,
+              height: 50,
             ),
             SizedBox(
               child: series,

@@ -1,5 +1,4 @@
 import 'package:smartfarming_app/pages/ui_view/area_list_view.dart';
-import 'package:smartfarming_app/pages/ui_view/running_view.dart';
 import 'package:smartfarming_app/pages/ui_view/title_view.dart';
 import 'package:smartfarming_app/pages/ui_view/profile_view.dart';
 import 'package:smartfarming_app/api/api.dart';

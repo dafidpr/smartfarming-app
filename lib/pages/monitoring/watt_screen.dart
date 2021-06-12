@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smartfarming_app/api/api.dart';
 import 'package:smartfarming_app/pages/ui_view/dashboard_view.dart';
 import 'package:smartfarming_app/pages/ui_view/watt_view.dart';
 import 'package:smartfarming_app/pages/ui_view/title_view.dart';
@@ -21,9 +25,73 @@ class _WattScreenState extends State<WattScreen> with TickerProviderStateMixin {
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
+  List _dataWatt;
+  String serialNumber;
+  String jan = "0.00",
+      feb = "0.00",
+      mar = "0.00",
+      apr = "0.00",
+      may = "0.00",
+      jun = "0.00",
+      jul = "0.00",
+      aug = "0.00",
+      sep = "0.00",
+      oct = "0.00",
+      nov = "0.00",
+      dec = "0.00";
+
+  void getWattGraphics() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var user = jsonDecode(localStorage.getString("user"));
+    if (user != null) {
+      setState(() {
+        serialNumber = user['serial_number'];
+      });
+    }
+
+    var response =
+        await Network().getData('/watt/$serialNumber/get-watt-graphics');
+    var data = jsonDecode(response.body);
+    setState(() {
+      _dataWatt = data['data'];
+    });
+
+    for (var i = 0; i < _dataWatt.length; i++) {
+      setState(() {
+        if (_dataWatt[i]['bulan'] != null) {
+          if (_dataWatt[i]['bulan'] == 'Jan') {
+            jan = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Feb') {
+            feb = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Mar') {
+            mar = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Apr') {
+            apr = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'May') {
+            may = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Jun') {
+            jun = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Jul') {
+            jul = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Aug') {
+            aug = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Sep') {
+            sep = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Oct') {
+            oct = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Nov') {
+            nov = _dataWatt[i]['power'];
+          } else if (_dataWatt[i]['bulan'] == 'Dec') {
+            dec = _dataWatt[i]['power'];
+          }
+        }
+      });
+    }
+  }
 
   @override
   void initState() {
+    getWattGraphics();
     topBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
             parent: widget.animationController,
@@ -77,23 +145,28 @@ class _WattScreenState extends State<WattScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     var data = [
-      Sales("Day 1", 78),
-      Sales("Day 2", 80),
-      Sales("Day 3", 34),
-      Sales("Day 4", 56),
-      Sales("Day 5", 54),
-      Sales("Day 6", 44),
-      Sales("Day 7", 66)
+      Watt("Jan", jan),
+      Watt("Feb", feb),
+      Watt("Mar", mar),
+      Watt("Apr", apr),
+      Watt("Mei", may),
+      Watt("Jun", jun),
+      Watt("Jul", jul),
+      Watt("Aug", aug),
+      Watt("Sep", sep),
+      Watt("Oct", oct),
+      Watt("Nov", nov),
+      Watt("Dec", dec),
     ];
 
     var series = [
       charts.Series(
-          domainFn: (Sales sales, _) => sales.day,
-          measureFn: (Sales sales, _) => sales.sold,
-          id: 'Sales',
+          domainFn: (Watt watt, _) => watt.month,
+          measureFn: (Watt watt, _) => double.parse(watt.watt),
+          id: 'Watt',
           colorFn: (_, __) => charts.ColorUtil.fromDartColor(Color(0xFF2633C5)),
           data: data,
-          labelAccessorFn: (Sales sales, _) => '${sales.sold} W'),
+          labelAccessorFn: (Watt watt, _) => '${watt.watt} W'),
     ];
 
     var chart = charts.BarChart(
@@ -217,9 +290,9 @@ class _WattScreenState extends State<WattScreen> with TickerProviderStateMixin {
   }
 }
 
-class Sales {
-  final String day;
-  final int sold;
+class Watt {
+  final String month;
+  final String watt;
 
-  Sales(this.day, this.sold);
+  Watt(this.month, this.watt);
 }
