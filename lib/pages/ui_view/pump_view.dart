@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LampView extends StatelessWidget {
+class PumpView extends StatelessWidget {
   final AnimationController animationController;
   final Animation animation;
 
-  const LampView({Key key, this.animationController, this.animation})
+  const PumpView({Key key, this.animationController, this.animation})
       : super(key: key);
 
   @override
@@ -65,7 +65,7 @@ class LampView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'On / Off Lampu',
+                                  'On / Off Pompa',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: FitnessAppTheme.fontName,
@@ -78,7 +78,7 @@ class LampView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    'Matikan dan Hidupkan Lampu',
+                                    'Matikan dan Hidupkan Pompa',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontFamily: FitnessAppTheme.fontName,
@@ -101,7 +101,7 @@ class LampView extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    SwitchLamp(),
+                                    SwitchPump(),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
@@ -135,14 +135,14 @@ class LampView extends StatelessWidget {
   }
 }
 
-class SwitchLamp extends StatefulWidget {
-  const SwitchLamp({Key key}) : super(key: key);
+class SwitchPump extends StatefulWidget {
+  const SwitchPump({Key key}) : super(key: key);
 
   @override
-  _SwitchLampState createState() => _SwitchLampState();
+  _SwitchPumpState createState() => _SwitchPumpState();
 }
 
-class _SwitchLampState extends State<SwitchLamp> {
+class _SwitchPumpState extends State<SwitchPump> {
   String serialNumber;
   bool isSwitched = false;
   bool newVal;
@@ -184,7 +184,7 @@ class _SwitchLampState extends State<SwitchLamp> {
     var res = await Network().sendPostData(data, '/get-control-status');
     var body = json.decode(res.body);
     setState(() {
-      if (body['lamp'] == '1') {
+      if (body['pump'] == '1') {
         isSwitched = true;
       } else {
         isSwitched = false;
@@ -214,14 +214,14 @@ class _SwitchLampState extends State<SwitchLamp> {
   }
 
   void changeLamp(String serialNumber) async {
-    var data = {'serial_number': serialNumber, 'type': 'lamp'};
+    var data = {'serial_number': serialNumber, 'type': 'pump'};
     var res = await Network().sendPostData(data, '/control-update');
     var body = json.decode(res.body);
     if (body['success']) {
-      if (body['lamp'] == '1') {
-        showMessageDialog("Lampu berhasil dihidupkan");
+      if (body['pump'] == '1') {
+        showMessageDialog("Pompa berhasil dihidupkan");
       } else {
-        showMessageDialog("Lampu berhasil dimatikan");
+        showMessageDialog("Pompa berhasil dimatikan");
       }
     }
   }

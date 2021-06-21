@@ -1,5 +1,6 @@
 import 'package:smartfarming_app/pages/ui_view/dashboard_view.dart';
 import 'package:smartfarming_app/pages/ui_view/lamp_view.dart';
+import 'package:smartfarming_app/pages/ui_view/pump_view.dart';
 import 'package:smartfarming_app/pages/ui_view/dashboard_view.dart';
 import 'package:smartfarming_app/pages/ui_view/title_view.dart';
 import 'package:smartfarming_app/pages/home_app_theme.dart';
@@ -60,6 +61,15 @@ class _ChangeLampScreenState extends State<ChangeLampScreen>
 
     listViews.add(
       LampView(
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+                Interval((1 / count) * 5, 1.0, curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController,
+      ),
+    );
+    listViews.add(
+      PumpView(
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
@@ -163,7 +173,7 @@ class _ChangeLampScreenState extends State<ChangeLampScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Lampu',
+                                  'Control',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontFamily: FitnessAppTheme.fontName,
